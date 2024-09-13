@@ -773,12 +773,9 @@ bool ADonNavigationManager::ScheduleDynamicCollisionUpdate(UPrimitiveComponent* 
 	if(bNeedsToScheduleTask)
 		AddDynamicCollisionTask(task);
 
-	return bOverallStatus;	
-
 	UE_LOG(DoNNavigationLog, Verbose, TEXT("Num collision tasks: %d"), ActiveDynamicCollisionTasks.Num());
 
-	return true;
-
+	return bOverallStatus;
 }
 
 bool ADonNavigationManager::IsDynamicCollisionTaskActive(const FDonNavigationDynamicCollisionTask& Task)
@@ -2850,7 +2847,7 @@ FVector ADonNavigationManager::FindRandomPointAroundOriginInNavWorld(AActor* Nav
 	for (int32 i = 0; i < MaxAttempts; i++)
 	{
 		float maxZAngularDispacement = FMath::Abs(MaxZAngularDispacement);
-		FRotator newDirection = FRotator(FMath::FRandRange(-maxZAngularDispacement, maxZAngularDispacement), FMath::FRandRange(0, 360), FMath::FRandRange(0, 360));
+		FRotator newDirection = FRotator(FMath::FRandRange(-maxZAngularDispacement, maxZAngularDispacement), FMath::FRandRange(0.0, 360.0), FMath::FRandRange(0.0, 360.0));
 		newDestination = Origin + newDirection.RotateVector(baseDisplacement);
 
 		if (MaxDesiredAltitude != -1.f)
